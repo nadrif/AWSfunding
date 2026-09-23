@@ -1,0 +1,39 @@
+{
+  "sports": [
+    { "id": "padel", "label": "Padel", "icon": "Volleyball", "popular": true },
+    { "id": "running", "label": "Running", "icon": "Footprints", "popular": false },
+    { "id": "swimming", "label": "Swimming", "icon": "Waves", "popular": false },
+    { "id": "tennis", "label": "Tennis", "icon": "CircleDot", "popular": false },
+    { "id": "cycling", "label": "Cycling", "icon": "Bike", "popular": false }
+  ],
+  "levels": ["Beginner", "Improver", "Intermediate", "Advanced", "Competitive"],
+  "goals": ["Play more", "Improve technique", "Compete", "Fitness", "Meet players"],
+  "apps": [
+    { "id": "apple_health", "label": "Apple Health" },
+    { "id": "garmin", "label": "Garmin" },
+    { "id": "whoop", "label": "WHOOP" },
+    { "id": "oura", "label": "Oura" },
+    { "id": "strava", "label": "Strava" },
+    { "id": "courts", "label": "Court booking app" }
+  ],
+  "today": [
+    { "id": "st-1", "time": "7:00pm", "title": "Padel session", "detail": "Court 3 · Nakheel Padel Club · doubles with Majed, Saud & Nawaf", "kind": "session" }
+  ],
+  "timeline": [
+    { "id": "sp-1", "when": "Sat, 21 Nov", "title": "Riyadh Padel Open", "detail": "Amateur · Men's C · first tournament", "status": "upcoming", "tag": "Event" },
+    { "id": "sp-2", "when": "Sat, 17 Oct", "title": "Plan milestone: match-play block", "detail": "Weeks 4–6 · 3 sets per session", "status": "upcoming", "tag": "Milestone" },
+    { "id": "sp-3", "when": "Sat, 26 Sep · 8:30pm", "title": "Coaching with Carlos", "detail": "Bandeja & vibora · Nakheel Padel Club", "status": "upcoming", "tag": "Coaching" },
+    { "id": "sp-4", "when": "Today · 7:00pm", "title": "Padel session", "detail": "Court 3 · Nakheel Padel Club", "status": "today", "tag": "Session" },
+    { "id": "sp-5", "when": "Mon, 21 Sep", "title": "Match · won 6–4, 3–6, 6–3", "detail": "With Majed vs. Faris & Ali · Sahara Courts", "status": "past", "tag": "Match" },
+    { "id": "sp-6", "when": "Sat, 19 Sep", "title": "Easy run · 5.2 km", "detail": "Wadi Hanifa · 5:48 /km", "status": "past", "tag": "Run" },
+    { "id": "sp-7", "when": "Thu, 17 Sep", "title": "Match · lost 4–6, 5–7", "detail": "With Saud vs. Nawaf & Turki · Nakheel", "status": "past", "tag": "Match" }
+  ],
+  "matches": [
+    { "id": "m-1", "date": "21 Sep", "opponents": "Faris & Ali", "score": "6–4, 3–6, 6–3", "result": "W", "sleep": "7h 20m" },
+    { "id": "m-2", "date": "17 Sep", "opponents": "Nawaf & Turki", "score": "4–6, 5–7", "result": "L", "sleep": "5h 35m" },
+    { "id": "m-3", "date": "14 Sep", "opponents": "Hamad & Rakan", "score": "6–2, 6–4", "result": "W", "sleep": "7h 05m" },
+    { "id": "m-4", "date": "10 Sep", "opponents": "Faris & Ali", "score": "6–3, 2–6, 4–6", "result": "L", "sleep": "5h 50m" },
+    { "id": "m-5", "date": "7 Sep", "opponents": "Bader & Omar", "score": "6–1, 6–3", "result": "W", "sleep": "7h 40m" }
+  ],
+  "sessionsPerWeek": { "weeks": ["W34", "W35", "W36", "W37", "W38", "W39"], "values": [1, 2, 2, 3, 2, 2] }
+}

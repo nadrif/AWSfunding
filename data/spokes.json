@@ -1,0 +1,240 @@
+[
+  {
+    "id": "profile",
+    "label": "Profile & Connections",
+    "icon": "UserRound",
+    "depth": "shallow",
+    "accent": "#3f4a56",
+    "tagline": "Your goals, history and connected devices",
+    "states": {
+      "new": {
+        "status": "active",
+        "microLabel": "Start here",
+        "tooltip": [
+          "Add your goals and schedule",
+          "Connect a wearable to unlock insights"
+        ]
+      },
+      "active": {
+        "status": "active",
+        "tooltip": [
+          "3 sources connected",
+          "Oura, Garmin, Apple Health"
+        ]
+      }
+    },
+    "freshlySetUp": {
+      "status": "active",
+      "tooltip": [
+        "Profile complete"
+      ]
+    }
+  },
+  {
+    "id": "train",
+    "label": "Train",
+    "icon": "Dumbbell",
+    "depth": "shallow",
+    "accent": "#5b7c99",
+    "tagline": "Strength, mobility and conditioning",
+    "states": {
+      "new": {
+        "status": "not_set_up",
+        "tooltip": [
+          "Build your weekly training plan"
+        ]
+      },
+      "active": {
+        "status": "active",
+        "attention": {
+          "type": "due",
+          "count": 2,
+          "label": "2 today"
+        },
+        "progress": 0.34,
+        "tooltip": [
+          "Lower-body strength — 6:30am (done)",
+          "Mobility flow — 9:00pm",
+          "Adjusted: short sleep last night"
+        ]
+      }
+    },
+    "freshlySetUp": {
+      "status": "active",
+      "progress": 0,
+      "tooltip": [
+        "First week of training ready"
+      ]
+    }
+  },
+  {
+    "id": "sports",
+    "label": "Sports",
+    "icon": "Trophy",
+    "depth": "deep",
+    "accent": "#4f8a7b",
+    "tagline": "Padel, running, swimming, tennis, cycling",
+    "states": {
+      "new": {
+        "status": "not_set_up",
+        "tooltip": [
+          "Pick your sports and level"
+        ]
+      },
+      "active": {
+        "status": "active",
+        "attention": {
+          "type": "opportunity",
+          "label": "Closes Thu"
+        },
+        "progress": 0,
+        "tooltip": [
+          "Padel session 7:00pm — Court 3, Nakheel Padel Club",
+          "Register for Riyadh Padel Open — closes Thu"
+        ]
+      }
+    },
+    "freshlySetUp": {
+      "status": "active",
+      "progress": 0,
+      "tooltip": [
+        "Sports profile ready",
+        "3 events near you"
+      ]
+    }
+  },
+  {
+    "id": "nutrition",
+    "label": "Nutrition",
+    "icon": "Salad",
+    "depth": "shallow",
+    "accent": "#a1885a",
+    "tagline": "Targets, meals and Ramadan mode",
+    "states": {
+      "new": {
+        "status": "not_set_up",
+        "tooltip": [
+          "Set daily targets"
+        ]
+      },
+      "active": {
+        "status": "active",
+        "progress": 0.62,
+        "tooltip": [
+          "Protein 98 / 150g",
+          "Hydration 1.8 / 3.0L"
+        ]
+      }
+    },
+    "freshlySetUp": {
+      "status": "active",
+      "progress": 0,
+      "tooltip": [
+        "Daily targets set"
+      ]
+    }
+  },
+  {
+    "id": "sleep",
+    "label": "Sleep",
+    "icon": "Moon",
+    "depth": "shallow",
+    "accent": "#6e6a9e",
+    "tagline": "Duration, consistency and HRV",
+    "states": {
+      "new": {
+        "status": "not_set_up",
+        "tooltip": [
+          "Connect a wearable to track sleep"
+        ]
+      },
+      "active": {
+        "status": "active",
+        "attention": {
+          "type": "needs_attention",
+          "label": "Sleep debt"
+        },
+        "tooltip": [
+          "5h 42m last night",
+          "Sleep debt building: 3h 10m this week"
+        ]
+      }
+    },
+    "freshlySetUp": {
+      "status": "active",
+      "tooltip": [
+        "Sleep tracking on"
+      ]
+    }
+  },
+  {
+    "id": "recovery",
+    "label": "Recovery",
+    "icon": "HeartPulse",
+    "depth": "deep",
+    "accent": "#b0706a",
+    "tagline": "Massage, physio, cold plunge and sauna",
+    "states": {
+      "new": {
+        "status": "not_set_up",
+        "tooltip": [
+          "Tell us where you feel it"
+        ]
+      },
+      "active": {
+        "status": "active",
+        "attention": {
+          "type": "due",
+          "count": 1,
+          "label": "1 today"
+        },
+        "progress": 0.5,
+        "tooltip": [
+          "Sports massage 6:30pm — Hammam Al Nakheel",
+          "Log today's soreness check-in"
+        ]
+      }
+    },
+    "freshlySetUp": {
+      "status": "active",
+      "progress": 0,
+      "tooltip": [
+        "Recovery plan ready",
+        "Log your first check-in"
+      ]
+    }
+  },
+  {
+    "id": "equipment",
+    "label": "Equipment",
+    "icon": "Package",
+    "depth": "shallow",
+    "accent": "#7d8570",
+    "tagline": "What you have and what helps",
+    "states": {
+      "new": {
+        "status": "not_set_up",
+        "tooltip": [
+          "Tell us what you have access to"
+        ]
+      },
+      "active": {
+        "status": "active",
+        "attention": {
+          "type": "done"
+        },
+        "progress": 1,
+        "tooltip": [
+          "All set — nothing needed today"
+        ]
+      }
+    },
+    "freshlySetUp": {
+      "status": "active",
+      "progress": 1,
+      "tooltip": [
+        "Inventory saved"
+      ]
+    }
+  }
+]

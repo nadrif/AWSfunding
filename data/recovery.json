@@ -1,0 +1,71 @@
+{
+  "modalities": [
+    { "id": "massage", "label": "Sports massage", "icon": "Hand", "blurb": "Deep tissue, pre/post event" },
+    { "id": "physio", "label": "Physiotherapy", "icon": "Stethoscope", "blurb": "Assessment and rehab" },
+    { "id": "cold", "label": "Ice bath / cold plunge", "icon": "Snowflake", "blurb": "2–4°C, 3–5 min" },
+    { "id": "sauna", "label": "Sauna", "icon": "Flame", "blurb": "Finnish or infrared" },
+    { "id": "compression", "label": "Compression", "icon": "Waves", "blurb": "Boots and sleeves" },
+    { "id": "stretching", "label": "Guided stretching", "icon": "PersonStanding", "blurb": "Assisted or follow-along" }
+  ],
+  "regions": [
+    { "id": "neck", "label": "Neck & traps", "views": ["front", "back"], "lower": false },
+    { "id": "shoulder_r", "label": "Right shoulder", "views": ["front", "back"], "lower": false },
+    { "id": "shoulder_l", "label": "Left shoulder", "views": ["front", "back"], "lower": false },
+    { "id": "chest", "label": "Chest", "views": ["front"], "lower": false },
+    { "id": "core", "label": "Core", "views": ["front"], "lower": false },
+    { "id": "biceps_r", "label": "Right biceps", "views": ["front"], "lower": false },
+    { "id": "biceps_l", "label": "Left biceps", "views": ["front"], "lower": false },
+    { "id": "forearm_r", "label": "Right forearm", "views": ["front", "back"], "lower": false },
+    { "id": "forearm_l", "label": "Left forearm", "views": ["front", "back"], "lower": false },
+    { "id": "hip_r", "label": "Right hip flexor", "views": ["front"], "lower": true },
+    { "id": "hip_l", "label": "Left hip flexor", "views": ["front"], "lower": true },
+    { "id": "quad_r", "label": "Right quad", "views": ["front"], "lower": true },
+    { "id": "quad_l", "label": "Left quad", "views": ["front"], "lower": true },
+    { "id": "knee_r", "label": "Right knee", "views": ["front"], "lower": true },
+    { "id": "knee_l", "label": "Left knee", "views": ["front"], "lower": true },
+    { "id": "shin_r", "label": "Right shin", "views": ["front"], "lower": true },
+    { "id": "shin_l", "label": "Left shin", "views": ["front"], "lower": true },
+    { "id": "upper_back", "label": "Upper back", "views": ["back"], "lower": false },
+    { "id": "lat_r", "label": "Right lat", "views": ["back"], "lower": false },
+    { "id": "lat_l", "label": "Left lat", "views": ["back"], "lower": false },
+    { "id": "lower_back", "label": "Lower back", "views": ["back"], "lower": false },
+    { "id": "triceps_r", "label": "Right triceps", "views": ["back"], "lower": false },
+    { "id": "triceps_l", "label": "Left triceps", "views": ["back"], "lower": false },
+    { "id": "glute_r", "label": "Right glute", "views": ["back"], "lower": true },
+    { "id": "glute_l", "label": "Left glute", "views": ["back"], "lower": true },
+    { "id": "hamstring_r", "label": "Right hamstring", "views": ["back"], "lower": true },
+    { "id": "hamstring_l", "label": "Left hamstring", "views": ["back"], "lower": true },
+    { "id": "calf_r", "label": "Right calf", "views": ["back"], "lower": true },
+    { "id": "calf_l", "label": "Left calf", "views": ["back"], "lower": true }
+  ],
+  "todayCheckIn": { "hamstring_r": 2, "quad_r": 1, "quad_l": 1, "shoulder_r": 1 },
+  "sorenessHistory": {
+    "days": ["Thu", "Fri", "Sat", "Sun", "Mon", "Tue"],
+    "regions": {
+      "hamstring_r": [0, 1, 1, 2, 2, 3],
+      "quad_r": [1, 2, 1, 0, 1, 1],
+      "shoulder_r": [2, 1, 1, 0, 0, 1],
+      "lower_back": [1, 1, 0, 0, 1, 0]
+    }
+  },
+  "bookings": [
+    { "id": "b-1", "title": "Sports massage · 60 min", "when": "Today · 6:30pm", "where": "Hammam Al Nakheel", "with": "Tariq Bakr", "modality": "massage" }
+  ],
+  "timeline": [
+    { "id": "rt-1", "when": "Thu, 1 Oct · 5:00pm", "title": "Physio check-up", "detail": "Dr. Hana Al-Rashid · Motion Physio", "status": "upcoming", "tag": "Physio" },
+    { "id": "rt-2", "when": "Sat, 26 Sep · 8:00pm", "title": "Cold plunge + sauna contrast", "detail": "Chill Lab · 45 min", "status": "upcoming", "tag": "Cold plunge" },
+    { "id": "rt-3", "when": "Today · 6:30pm", "title": "Sports massage · 60 min", "detail": "Tariq Bakr · Hammam Al Nakheel", "status": "today", "tag": "Massage" },
+    { "id": "rt-4", "when": "Mon, 21 Sep", "title": "Guided stretching · 20 min", "detail": "Follow-along, at home", "status": "past", "tag": "Stretching" },
+    { "id": "rt-5", "when": "Sat, 19 Sep", "title": "Cold plunge · 4 min at 3°C", "detail": "Chill Lab", "status": "past", "tag": "Cold plunge" },
+    { "id": "rt-6", "when": "Wed, 16 Sep", "title": "Sports massage · 45 min", "detail": "Ahmed Fawzi · Chill Lab", "status": "past", "tag": "Massage" }
+  ],
+  "sessionsByWeek": {
+    "weeks": ["W35", "W36", "W37", "W38", "W39"],
+    "series": [
+      { "id": "massage", "label": "Massage", "values": [1, 0, 1, 1, 1] },
+      { "id": "cold", "label": "Cold plunge", "values": [0, 1, 1, 2, 1] },
+      { "id": "stretching", "label": "Stretching", "values": [2, 1, 3, 2, 1] },
+      { "id": "sauna", "label": "Sauna", "values": [1, 1, 0, 1, 1] }
+    ]
+  }
+}

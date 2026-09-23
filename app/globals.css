@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --radius: 0.9rem;
+  --background: #f7f7f4;
+  --foreground: #16191d;
+  --card: #ffffff;
+  --card-foreground: #16191d;
+  --popover: #ffffff;
+  --popover-foreground: #16191d;
+  --primary: #16191d;
+  --primary-foreground: #ffffff;
+  --secondary: #eef0f2;
+  --secondary-foreground: #16191d;
+  --muted: #eef0f2;
+  --muted-foreground: #66707a;
+  --accent: #eef0f2;
+  --accent-foreground: #16191d;
+  --destructive: #d9534f;
+  --border: #e3e6ea;
+  --input: #e3e6ea;
+  --ring: #9aa4ae;
+
+  /* Hub palette */
+  --node-inactive: #c8d0d8;
+  --attn-due: #1f2328;
+  --attn-warn: #e08a1e;
+  --attn-alert: #d9534f;
+  --attn-opportunity: #2f7fe0;
+  --attn-done: #3fa46a;
+  --beam-data-a: #2aa198;
+  --beam-data-b: #7fb8c9;
+
+  /* Spoke accents — muted, harmonious */
+  --spoke-profile: #3f4a56;
+  --spoke-train: #5b7c99;
+  --spoke-sports: #4f8a7b;
+  --spoke-nutrition: #a1885a;
+  --spoke-sleep: #6e6a9e;
+  --spoke-recovery: #b0706a;
+  --spoke-equipment: #7d8570;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-node-inactive: var(--node-inactive);
+  --color-attn-due: var(--attn-due);
+  --color-attn-warn: var(--attn-warn);
+  --color-attn-alert: var(--attn-alert);
+  --color-attn-opportunity: var(--attn-opportunity);
+  --color-attn-done: var(--attn-done);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "cv11", "ss01";
+  }
+}
+
+.bg-dots {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgb(22 25 29 / 0.09) 1px,
+    transparent 0
+  );
+  background-size: 22px 22px;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}

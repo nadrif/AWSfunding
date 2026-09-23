@@ -1,0 +1,7 @@
+[
+  { "id": "apple_health", "name": "Apple Health", "kind": "Phone", "feeds": "Workouts, heart rate, weight" },
+  { "id": "garmin", "name": "Garmin", "kind": "Watch", "feeds": "Matches, runs, training load" },
+  { "id": "oura", "name": "Oura", "kind": "Ring", "feeds": "Sleep, HRV, readiness" },
+  { "id": "whoop", "name": "WHOOP", "kind": "Band", "feeds": "Strain, recovery, sleep" },
+  { "id": "strava", "name": "Strava", "kind": "App", "feeds": "Runs, rides, segments" }
+]
