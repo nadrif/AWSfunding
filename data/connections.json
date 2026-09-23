@@ -1,0 +1,89 @@
+[
+  {
+    "id": "profile-sleep",
+    "from": "profile",
+    "to": "sleep",
+    "type": "data",
+    "label": "sleep & HRV",
+    "sources": ["oura", "whoop"],
+    "potentialLabel": "Connect Oura or WHOOP to unlock sleep & HRV",
+    "visibleIn": ["new", "active"]
+  },
+  {
+    "id": "profile-train",
+    "from": "profile",
+    "to": "train",
+    "type": "data",
+    "label": "workouts & heart rate",
+    "sources": ["apple_health", "strava"],
+    "potentialLabel": "Connect Apple Health to import workouts",
+    "visibleIn": ["new", "active"]
+  },
+  {
+    "id": "profile-sports",
+    "from": "profile",
+    "to": "sports",
+    "type": "data",
+    "label": "matches, runs & GPS",
+    "sources": ["garmin", "strava"],
+    "potentialLabel": "Connect Garmin or Strava to log matches",
+    "visibleIn": ["new", "active"]
+  },
+  {
+    "id": "profile-recovery",
+    "from": "profile",
+    "to": "recovery",
+    "type": "data",
+    "label": "training load & body battery",
+    "sources": ["garmin", "whoop"],
+    "potentialLabel": "Connect Garmin or WHOOP to track load",
+    "visibleIn": ["new", "active"]
+  },
+  {
+    "id": "profile-nutrition",
+    "from": "profile",
+    "to": "nutrition",
+    "type": "data",
+    "label": "weight & active energy",
+    "sources": ["apple_health"],
+    "potentialLabel": "Connect Apple Health for energy targets",
+    "visibleIn": ["new", "active"]
+  },
+  {
+    "id": "profile-equipment",
+    "from": "profile",
+    "to": "equipment",
+    "type": "data",
+    "label": "Profile → home & gym access",
+    "potentialLabel": "Add your home and gym setup",
+    "visibleIn": ["new", "active"]
+  },
+  {
+    "id": "sleep-train",
+    "from": "sleep",
+    "to": "train",
+    "type": "signal",
+    "label": "Sleep → Train",
+    "reason": "Short sleep: session adjusted",
+    "visibleIn": ["new", "active"]
+  },
+  {
+    "id": "train-recovery",
+    "from": "train",
+    "to": "recovery",
+    "type": "signal",
+    "label": "Train → Recovery",
+    "reason": "High load: recovery suggested",
+    "visibleIn": ["new", "active"]
+  },
+  {
+    "id": "sports-train",
+    "from": "sports",
+    "to": "train",
+    "type": "signal",
+    "label": "Sports → Train",
+    "reason": "Event plan added",
+    "visibleIn": ["new", "active"],
+    "requires": "event_signup"
+  }
+]

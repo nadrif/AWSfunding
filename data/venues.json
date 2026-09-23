@@ -1,0 +1,9 @@
+[
+  { "id": "v-1", "name": "Nakheel Padel Club", "area": "Al Nakheel, Riyadh", "distanceKm": 2.4, "setting": "Indoor", "kind": "Padel" },
+  { "id": "v-2", "name": "Diriyah Padel Hub", "area": "Diriyah", "distanceKm": 9.8, "setting": "Indoor & outdoor", "kind": "Padel" },
+  { "id": "v-3", "name": "Sahara Courts", "area": "Hittin, Riyadh", "distanceKm": 6.1, "setting": "Outdoor", "kind": "Padel & tennis" },
+  { "id": "v-4", "name": "Wadi Hanifa Trail", "area": "Wadi Hanifa", "distanceKm": 12.5, "setting": "Outdoor", "kind": "Running" },
+  { "id": "v-5", "name": "Hammam Al Nakheel", "area": "Al Nakheel, Riyadh", "distanceKm": 2.1, "setting": "Indoor", "kind": "Massage & sauna" },
+  { "id": "v-6", "name": "Chill Lab", "area": "Hittin, Riyadh", "distanceKm": 5.7, "setting": "Indoor", "kind": "Cold plunge & sauna" },
+  { "id": "v-7", "name": "Motion Physio", "area": "Al Olaya, Riyadh", "distanceKm": 7.3, "setting": "Indoor", "kind": "Physiotherapy" }
+]

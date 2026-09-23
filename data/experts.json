@@ -1,0 +1,17 @@
+[
+  { "id": "ex-pt-1", "spoke": "train", "name": "Omar Al-Harbi", "speciality": "Strength & conditioning", "location": "Al Olaya, Riyadh", "online": false, "rating": 4.9, "reviews": 212, "priceSar": 280, "unit": "session", "tags": ["Hypertrophy", "Athletic performance"] },
+  { "id": "ex-pt-2", "spoke": "train", "name": "Lina Haddad", "speciality": "Mobility & functional training", "location": "Online · Riyadh", "online": true, "rating": 4.8, "reviews": 158, "priceSar": 190, "unit": "session", "tags": ["Mobility", "Women's training"] },
+  { "id": "ex-pt-3", "spoke": "train", "name": "Khalid Mansour", "speciality": "Hybrid & endurance", "location": "Hittin, Riyadh", "online": false, "rating": 4.7, "reviews": 96, "priceSar": 250, "unit": "session", "tags": ["Hyrox", "Conditioning"] },
+
+  { "id": "ex-sp-1", "spoke": "sports", "name": "Carlos Ibáñez", "speciality": "Padel coach · WPT certified", "location": "Nakheel Padel Club", "online": false, "rating": 4.9, "reviews": 184, "priceSar": 350, "unit": "hour", "tags": ["Padel", "Tournament prep"] },
+  { "id": "ex-sp-2", "spoke": "sports", "name": "Reem Al-Qahtani", "speciality": "Padel coach · Level 2", "location": "Diriyah Padel Hub", "online": false, "rating": 4.8, "reviews": 121, "priceSar": 280, "unit": "hour", "tags": ["Padel", "Technique"] },
+  { "id": "ex-sp-3", "spoke": "sports", "name": "Yousef Al-Saud", "speciality": "Running coach", "location": "Online · Wadi Hanifa runs", "online": true, "rating": 4.7, "reviews": 88, "priceSar": 220, "unit": "session", "tags": ["5K–Half", "Heat training"] },
+
+  { "id": "ex-nu-1", "spoke": "nutrition", "name": "Dr. Sara Al-Mutairi", "speciality": "Clinical dietitian", "location": "Online", "online": true, "rating": 4.9, "reviews": 240, "priceSar": 320, "unit": "consult", "tags": ["Ramadan planning", "Body composition"] },
+  { "id": "ex-nu-2", "spoke": "nutrition", "name": "Faris Nasser", "speciality": "Sports nutritionist", "location": "Al Malqa, Riyadh", "online": false, "rating": 4.7, "reviews": 77, "priceSar": 260, "unit": "consult", "tags": ["Performance", "Fuelling"] },
+
+  { "id": "ex-rc-1", "spoke": "recovery", "name": "Dr. Hana Al-Rashid", "speciality": "Sports physiotherapist", "location": "Motion Physio, Al Olaya", "online": false, "rating": 4.9, "reviews": 203, "priceSar": 420, "unit": "assessment", "tags": ["Hamstrings", "Return to play"] },
+  { "id": "ex-rc-2", "spoke": "recovery", "name": "Tariq Bakr", "speciality": "Sports massage therapist", "location": "Hammam Al Nakheel", "online": false, "rating": 4.8, "reviews": 312, "priceSar": 300, "unit": "60 min", "tags": ["Deep tissue", "Pre-event"] },
+  { "id": "ex-rc-3", "spoke": "recovery", "name": "Maya Suleiman", "speciality": "Physiotherapist · home visits", "location": "Comes to you · Riyadh", "online": false, "rating": 4.7, "reviews": 64, "priceSar": 480, "unit": "visit", "tags": ["Home visit", "Mobility"] },
+  { "id": "ex-rc-4", "spoke": "recovery", "name": "Ahmed Fawzi", "speciality": "Massage & assisted stretching", "location": "Chill Lab, Hittin", "online": false, "rating": 4.6, "reviews": 141, "priceSar": 240, "unit": "45 min", "tags": ["Stretching", "Cold plunge"] }
+]
