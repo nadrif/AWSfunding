@@ -18,6 +18,7 @@ npm run build    # static export to ./out (deploys as-is to Vercel or any static
   - Teal **data** beams: a connected source feeds a spoke (routed through the core).
   - Amber **signal** beams: one spoke is affecting another. Hover the ⚡ chip to see why.
   - Dotted **potential** lines: unlocks once the spoke is set up or a source is connected.
+- **Turn modules on and off from the hub**: hover a spoke and click the ⏻ button in its corner. On a phone, tap the spoke, then tap *Turn off*. The spoke goes grey, its beams and signals disappear, and a toast offers Undo. Click or tap a greyed spoke to turn it back on. Each spoke page also has a *Turn off* button. Profile & Connections can't be turned off.
 - **Demo toggle** (bottom right): switch between **New user** and **Active user**. The hub animates from grey to colour, and dotted lines become live beams.
 - **Guided demo**: a five-step walkthrough (hub → attention → beams → Sports event → Recovery body map).
 - **Sports** (deep): 4-step setup wizard; Today (session, events, coaching); Timeline; Progress; Experts. Signing up for the Riyadh Padel Open adds an 8-week plan to Train and lights up a new Sports → Train beam on the hub.

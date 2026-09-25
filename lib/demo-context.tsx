@@ -25,6 +25,9 @@ type DemoContextValue = {
   toggleSource: (id: SourceId, on?: boolean) => void;
   setUp: Partial<Record<SpokeId, boolean>>;
   markSetUp: (id: SpokeId) => void;
+  /** Modules the user has turned off from the hub (Profile can't be turned off) */
+  disabled: Partial<Record<SpokeId, boolean>>;
+  setDisabled: (id: SpokeId, off: boolean) => void;
   signedUpEvents: string[];
   signUpEvent: (id: string) => void;
   /** Connection id to spotlight on the hub (e.g. after an event sign-up) */
@@ -42,6 +45,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
   const [mode, setModeState] = React.useState<DemoMode>("active");
   const [sources, setSources] = React.useState<Sources>(DEFAULT_SOURCES.active);
   const [setUp, setSetUp] = React.useState<Partial<Record<SpokeId, boolean>>>({});
+  const [disabled, setDisabledState] = React.useState<Partial<Record<SpokeId, boolean>>>({});
   const [signedUpEvents, setSignedUpEvents] = React.useState<string[]>([]);
   const [freshSignal, setFreshSignal] = React.useState<string | null>(null);
   const [ramadan, setRamadan] = React.useState(false);
@@ -63,6 +67,11 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
     setSetUp((prev) => ({ ...prev, [id]: true }));
   }, []);
 
+  const setDisabled = React.useCallback((id: SpokeId, off: boolean) => {
+    if (id === "profile") return;
+    setDisabledState((prev) => ({ ...prev, [id]: off }));
+  }, []);
+
   const signUpEvent = React.useCallback((id: string) => {
     setSignedUpEvents((prev) => (prev.includes(id) ? prev : [...prev, id]));
     setFreshSignal("sports-train");
@@ -76,6 +85,8 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
       toggleSource,
       setUp,
       markSetUp,
+      disabled,
+      setDisabled,
       signedUpEvents,
       signUpEvent,
       freshSignal,
@@ -85,7 +96,7 @@ export function DemoProvider({ children }: { children: React.ReactNode }) {
       tourStep,
       setTourStep,
     }),
-    [mode, setMode, sources, toggleSource, setUp, markSetUp, signedUpEvents, signUpEvent, freshSignal, ramadan, tourStep]
+    [mode, setMode, sources, toggleSource, setUp, markSetUp, disabled, setDisabled, signedUpEvents, signUpEvent, freshSignal, ramadan, tourStep]
   );
 
   return <DemoContext.Provider value={value}>{children}</DemoContext.Provider>;
@@ -100,9 +111,12 @@ export function useDemo() {
 /** Resolve a spoke's state from mode, session setup and connected sources. */
 export function resolveSpokeState(
   id: SpokeId,
-  ctx: Pick<DemoContextValue, "mode" | "setUp" | "sources" | "signedUpEvents">
+  ctx: Pick<DemoContextValue, "mode" | "setUp" | "sources" | "signedUpEvents" | "disabled">
 ): SpokeState {
   const spoke = getSpoke(id);
+  if (id !== "profile" && ctx.disabled[id]) {
+    return { status: "off", tooltip: ["Turned off — hidden from your day", "Its signals and data are paused"] };
+  }
   const base = spoke.states[ctx.mode];
   let state: SpokeState =
     base.status === "not_set_up" && ctx.setUp[id] ? spoke.freshlySetUp : base;
@@ -169,6 +183,7 @@ export function useEffectiveConnections(): EffectiveConnection[] {
     for (const c of connections) {
       if (!c.visibleIn.includes(ctx.mode)) continue;
       if (c.requires === "event_signup" && ctx.signedUpEvents.length === 0) continue;
+      if (status[c.from] === "off" || status[c.to] === "off") continue;
 
       if (c.type === "signal") {
         if (status[c.from] !== "active" || status[c.to] !== "active") continue;
@@ -193,5 +208,5 @@ export function useEffectiveConnections(): EffectiveConnection[] {
     return out;
     // ctx fields listed explicitly so the memo tracks the parts that matter
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ctx.mode, ctx.sources, ctx.setUp, ctx.signedUpEvents]);
+  }, [ctx.mode, ctx.sources, ctx.setUp, ctx.signedUpEvents, ctx.disabled]);
 }

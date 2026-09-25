@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { motion } from "motion/react";
-import { Check, Sparkles } from "lucide-react";
+import { Check, Power, PowerOff, Sparkles } from "lucide-react";
 
 import { NamedIcon } from "@/lib/icons";
 import { cn } from "@/lib/utils";
@@ -20,9 +20,12 @@ type Props = {
   launching: boolean;
   onHover: (hovered: boolean) => void;
   onActivate: (pointerType: string) => void;
+  /** Turn the module off/on; omitted for spokes that can't be turned off */
+  onTogglePower?: () => void;
 };
 
 const INACTIVE_FILL = "#e3e7eb";
+const OFF_FILL = "#eceff2";
 
 // Deterministic per-node float so nodes drift out of sync
 function floatFor(index: number) {
@@ -47,8 +50,10 @@ export function SpokeNode({
   launching,
   onHover,
   onActivate,
+  onTogglePower,
 }: Props) {
   const active = state.status === "active";
+  const off = state.status === "off";
   const attention = state.attention;
   const progress = attention?.type === "done" ? 1 : state.progress;
   const float = floatFor(index);
@@ -67,12 +72,12 @@ export function SpokeNode({
         top: `${layout.y}%`,
         width: `${layout.size}%`,
         aspectRatio: "1 / 1",
-        zIndex: focused ? 30 : 20,
+        zIndex: focused ? 40 : 20,
       }}
     >
       {/* Float an inner element so the ref'd wrapper (beam anchor) stays fixed */}
       <motion.div
-        className="size-full"
+        className="group/node relative size-full"
         animate={{
           x: [0, float.dx, 0, -float.dx, 0],
           y: [0, -float.dy, 0, float.dy * 0.6, 0],
@@ -86,7 +91,7 @@ export function SpokeNode({
       >
         <motion.button
           type="button"
-          aria-label={`${spoke.label}${active ? "" : " — not set up"}`}
+          aria-label={`${spoke.label}${active ? "" : off ? " — turned off" : " — not set up"}`}
           onPointerDown={(e) => (pointerType.current = e.pointerType)}
           onMouseEnter={() => onHover(true)}
           onMouseLeave={() => onHover(false)}
@@ -95,7 +100,7 @@ export function SpokeNode({
           onClick={() => onActivate(pointerType.current)}
           className="group relative block size-full cursor-pointer rounded-full outline-none focus-visible:ring-4 focus-visible:ring-ring/40"
           animate={{
-            opacity: dimmed ? 0.4 : 1,
+            opacity: dimmed ? 0.4 : off ? 0.7 : 1,
             scale: launching ? 1.14 : focused ? 1.06 : 1,
           }}
           whileTap={{ scale: 0.96 }}
@@ -146,13 +151,13 @@ export function SpokeNode({
           <motion.span
             className={cn(
               "absolute inset-0 flex flex-col items-center justify-center gap-[6%] rounded-full border-2 text-center",
-              active ? "shadow-[0_10px_28px_-10px_rgb(0_0_0/0.45)]" : "border-dashed"
+              active ? "shadow-[0_10px_28px_-10px_rgb(0_0_0/0.45)]" : off ? "" : "border-dashed"
             )}
             initial={false}
             animate={{
-              backgroundColor: active ? spoke.accent : INACTIVE_FILL,
-              borderColor: active ? "rgba(255,255,255,0.35)" : "#b3bdc7",
-              color: active ? "#ffffff" : "#7c8792",
+              backgroundColor: active ? spoke.accent : off ? OFF_FILL : INACTIVE_FILL,
+              borderColor: active ? "rgba(255,255,255,0.35)" : off ? "#d5dbe1" : "#b3bdc7",
+              color: active ? "#ffffff" : off ? "#a3adb7" : "#7c8792",
             }}
             transition={{ duration: 0.6, delay: 0.15 + index * 0.09, ease: "easeOut" }}
           >
@@ -192,7 +197,31 @@ export function SpokeNode({
               <Check className="size-[60%] min-h-2.5 min-w-2.5" strokeWidth={3} />
             </Badge>
           )}
+          {off && (
+            <Badge className="bg-[#9aa4ae] text-white">
+              <PowerOff className="size-[55%] min-h-2.5 min-w-2.5" strokeWidth={2.5} />
+            </Badge>
+          )}
         </motion.button>
+
+        {/* Hover control to turn the module off (off modules re-enable on click) */}
+        {onTogglePower && !off && (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onTogglePower();
+            }}
+            aria-label={`Turn off ${spoke.label}`}
+            title={`Turn off ${spoke.label}`}
+            className={cn(
+              "absolute bottom-[2%] left-[2%] z-10 flex size-[24%] min-h-6 min-w-6 items-center justify-center rounded-full border bg-card text-muted-foreground shadow-md transition-all hover:bg-foreground hover:text-background focus-visible:opacity-100",
+              focused ? "scale-100 opacity-100" : "scale-75 opacity-0 group-hover/node:scale-100 group-hover/node:opacity-100"
+            )}
+          >
+            <Power className="size-[55%] min-h-3 min-w-3" strokeWidth={2.5} />
+          </button>
+        )}
 
         {/* Micro label */}
         <MicroLabel state={state} />
@@ -226,6 +255,9 @@ function MicroLabel({ state }: { state: SpokeState }) {
     text = state.microLabel;
     tone = "bg-foreground text-background";
     pulse = true;
+  } else if (state.status === "off") {
+    text = "Off · tap to turn on";
+    tone = "bg-card/80 text-muted-foreground border";
   } else if (state.status === "not_set_up") {
     text = "Set up";
     tone = "bg-card/80 text-muted-foreground border border-dashed border-[#b3bdc7]";

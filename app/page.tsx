@@ -6,8 +6,8 @@ import { AnimatePresence, motion } from "motion/react";
 import { Hub } from "@/components/hub/hub";
 import { HubLegend } from "@/components/hub/legend";
 import { CoreLoop } from "@/components/hub/core-loop";
-import { useDemo } from "@/lib/demo-context";
-import { persona } from "@/lib/data";
+import { resolveSpokeState, useDemo } from "@/lib/demo-context";
+import { persona, spokes } from "@/lib/data";
 
 const noopSubscribe = () => () => {};
 
@@ -30,8 +30,14 @@ function useToday() {
 }
 
 export default function HubPage() {
-  const { mode } = useDemo();
+  const demo = useDemo();
+  const { mode } = demo;
   const today = useToday();
+  const states = spokes.map((s) => resolveSpokeState(s.id, demo));
+  const needYou = states.filter(
+    (s) => s.status === "active" && s.attention && s.attention.type !== "done"
+  ).length;
+  const offCount = states.filter((s) => s.status === "off").length;
 
   return (
     <main className="bg-dots flex min-h-[calc(100dvh-57px)] flex-col items-center px-4 pt-6 pb-28 sm:pt-8">
@@ -57,7 +63,7 @@ export default function HubPage() {
             </AnimatePresence>
             <p className="mt-1 text-sm text-muted-foreground">
               {mode === "active"
-                ? "4 areas need you today. Hover a spoke to see what's pending."
+                ? `${needYou === 0 ? "Nothing" : `${needYou} area${needYou === 1 ? "" : "s"}`} need${needYou === 1 ? "s" : ""} you today. Hover a spoke to see what's pending, or ⏻ to turn it off.${offCount ? ` ${offCount} turned off.` : ""}`
                 : "Start with your profile — every other area unlocks from there."}
             </p>
           </div>

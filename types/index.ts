@@ -18,7 +18,8 @@ export type Attention = {
   label?: string;
 };
 
-export type SpokeStatus = "not_set_up" | "active";
+/** "off" = the user turned the module off from the hub */
+export type SpokeStatus = "not_set_up" | "active" | "off";
 
 export type SpokeState = {
   status: SpokeStatus;

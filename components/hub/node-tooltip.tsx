@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Power } from "lucide-react";
 
 import { NamedIcon } from "@/lib/icons";
 import { cn } from "@/lib/utils";
@@ -15,13 +15,16 @@ export function NodeTooltip({
   layout,
   touch,
   onOpen,
+  onTogglePower,
 }: {
   spoke: Spoke;
   state: SpokeState;
   layout: NodeLayout;
   touch: boolean;
   onOpen: () => void;
+  onTogglePower?: () => void;
 }) {
+  const off = state.status === "off";
   const below = layout.y < 50;
   const offset = layout.size / 2 + 5;
   const align = layout.x < 35 ? "left" : layout.x > 65 ? "right" : "center";
@@ -64,15 +67,33 @@ export function NodeTooltip({
           ))}
         </ul>
         {touch ? (
-          <button
-            type="button"
-            onClick={onOpen}
-            className="mt-2.5 flex w-full items-center justify-center gap-1.5 rounded-full bg-foreground py-1.5 text-xs font-semibold text-background"
-          >
-            Open {spoke.id === "profile" ? "Profile" : spoke.label} <ArrowRight className="size-3.5" />
-          </button>
+          <div className="mt-2.5 flex gap-2">
+            {!off && (
+              <button
+                type="button"
+                onClick={onOpen}
+                className="flex flex-1 items-center justify-center gap-1.5 rounded-full bg-foreground py-1.5 text-xs font-semibold text-background"
+              >
+                Open <ArrowRight className="size-3.5" />
+              </button>
+            )}
+            {onTogglePower && (
+              <button
+                type="button"
+                onClick={onTogglePower}
+                className={cn(
+                  "flex items-center justify-center gap-1.5 rounded-full py-1.5 text-xs font-semibold",
+                  off ? "flex-1 bg-foreground text-background" : "border px-3 text-muted-foreground"
+                )}
+              >
+                <Power className="size-3.5" /> {off ? "Turn on" : "Turn off"}
+              </button>
+            )}
+          </div>
         ) : (
-          <p className="mt-2 text-[11px] font-medium text-muted-foreground/80">Click to open</p>
+          <p className="mt-2 text-[11px] font-medium text-muted-foreground/80">
+            {off ? "Click to turn back on" : onTogglePower ? "Click to open · ⏻ to turn off" : "Click to open"}
+          </p>
         )}
       </div>
     </motion.div>

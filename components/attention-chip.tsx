@@ -1,4 +1,4 @@
-import { AlertTriangle, Check, CircleDashed, Clock, Sparkles } from "lucide-react";
+import { AlertTriangle, Check, CircleDashed, Clock, PowerOff, Sparkles } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import type { SpokeState } from "@/types";
@@ -17,7 +17,11 @@ export function AttentionChip({
   let text = "On track";
   let tone = "bg-secondary text-foreground";
 
-  if (state.status === "not_set_up") {
+  if (state.status === "off") {
+    icon = <PowerOff />;
+    text = "Turned off";
+    tone = "bg-secondary text-muted-foreground";
+  } else if (state.status === "not_set_up") {
     icon = <CircleDashed />;
     text = "Not set up";
     tone = "bg-secondary text-muted-foreground";
