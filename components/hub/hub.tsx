@@ -4,6 +4,7 @@ import * as React from "react";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import { Zap } from "lucide-react";
+import { toast } from "sonner";
 
 import { AnimatedBeam } from "@/components/magicui/animated-beam";
 import { spokes } from "@/lib/data";
@@ -139,7 +140,30 @@ export function Hub() {
     );
   };
 
+  const setPower = (id: SpokeId, on: boolean) => {
+    const label = spokes.find((s) => s.id === id)!.label;
+    demo.setDisabled(id, !on);
+    setHoverNode(null);
+    setFocusNode(null);
+    if (on) {
+      toast.success(`${label} is back on`, { description: "Its items, data and signals are live again." });
+    } else {
+      toast(`${label} turned off`, {
+        description: "Greyed out on your hub. Tap it any time to turn it back on.",
+        action: { label: "Undo", onClick: () => demo.setDisabled(id, false) },
+      });
+    }
+  };
+
   const activate = (id: SpokeId, pointerType: string) => {
+    if (states[id].status === "off") {
+      if (pointerType === "touch" && focusNode !== id) {
+        setFocusNode(id);
+        return;
+      }
+      setPower(id, true);
+      return;
+    }
     if (pointerType === "touch" && focusNode !== id) {
       setFocusNode(id);
       return;
@@ -302,6 +326,7 @@ export function Hub() {
             launching={launching === id}
             onHover={(h) => setHoverNode((cur) => (h ? id : cur === id ? null : cur))}
             onActivate={(pt) => activate(id, pt)}
+            onTogglePower={id === "profile" ? undefined : () => setPower(id, false)}
           />
         );
       })}
@@ -316,6 +341,11 @@ export function Hub() {
             layout={NODE_LAYOUT[activeNode]}
             touch={focusNode === activeNode && !hoverNode}
             onOpen={() => activate(activeNode, "mouse")}
+            onTogglePower={
+              activeNode === "profile"
+                ? undefined
+                : () => setPower(activeNode, states[activeNode].status === "off")
+            }
           />
         )}
       </AnimatePresence>

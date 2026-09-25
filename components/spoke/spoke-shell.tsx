@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowLeft, CalendarClock, LineChart, ListChecks, RotateCcw, Users } from "lucide-react";
+import { ArrowLeft, CalendarClock, LineChart, ListChecks, Power, PowerOff, RotateCcw, Users } from "lucide-react";
 import { toast } from "sonner";
 
 import { AttentionChip } from "@/components/attention-chip";
@@ -38,11 +38,12 @@ export function SpokeShell({
 }) {
   const spoke = getSpoke(spokeId);
   const state = useSpokeState(spokeId);
-  const { markSetUp } = useDemo();
+  const { markSetUp, setDisabled } = useDemo();
   const [rerun, setRerun] = React.useState(false);
   const [tab, setTab] = React.useState("today");
 
-  const showWizard = !!wizardSteps && (state.status === "not_set_up" || rerun);
+  const off = state.status === "off";
+  const showWizard = !off && !!wizardSteps && (state.status === "not_set_up" || rerun);
 
   const finish = () => {
     markSetUp(spokeId);
@@ -77,6 +78,22 @@ export function SpokeShell({
           </div>
           <p className="truncate text-sm text-muted-foreground">{spoke.tagline}</p>
         </div>
+        {spokeId !== "profile" && state.status !== "off" && !rerun && (
+          <Button
+            variant="ghost"
+            size="sm"
+            className="text-muted-foreground"
+            onClick={() => {
+              setDisabled(spokeId, true);
+              toast(`${spoke.label} turned off`, {
+                description: "Greyed out on your hub. Turn it back on here or from the hub.",
+                action: { label: "Undo", onClick: () => setDisabled(spokeId, false) },
+              });
+            }}
+          >
+            <PowerOff /> Turn off
+          </Button>
+        )}
         {wizardSteps && state.status === "active" && !rerun && (
           <Button variant="ghost" size="sm" onClick={() => setRerun(true)} className="text-muted-foreground">
             <RotateCcw /> Re-run setup
@@ -86,7 +103,33 @@ export function SpokeShell({
 
       <div className="mt-6 sm:mt-8">
         <AnimatePresence mode="wait" initial={false}>
-          {showWizard ? (
+          {off ? (
+            <motion.div
+              key="off"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.25 }}
+              className="flex flex-col items-center rounded-3xl border border-dashed bg-card/60 px-6 py-16 text-center"
+            >
+              <span className="flex size-12 items-center justify-center rounded-full bg-secondary text-muted-foreground">
+                <PowerOff className="size-5" />
+              </span>
+              <p className="mt-3 text-lg font-semibold">{spoke.label} is turned off</p>
+              <p className="mt-1 max-w-sm text-sm text-muted-foreground">
+                It&apos;s greyed out on your hub, and its items, data and signals are paused. Turn it back on any time.
+              </p>
+              <Button
+                className="mt-5"
+                onClick={() => {
+                  setDisabled(spokeId, false);
+                  toast.success(`${spoke.label} is back on`);
+                }}
+              >
+                <Power /> Turn {spoke.label} back on
+              </Button>
+            </motion.div>
+          ) : showWizard ? (
             <motion.div
               key="wizard"
               initial={{ opacity: 0, y: 10 }}

@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { Check, Info, Sparkles, X, Zap } from "lucide-react";
+import { Check, Info, PowerOff, Sparkles, X, Zap } from "lucide-react";
 
 export function HubLegend() {
   const [open, setOpen] = React.useState(false);
@@ -64,6 +64,15 @@ export function HubLegend() {
                 }
                 label="Done"
                 hint="Ring closes as you progress"
+              />
+              <Row
+                icon={
+                  <span className="flex size-5 items-center justify-center rounded-full border border-[#d5dbe1] bg-[#eceff2] text-[#a3adb7]">
+                    <PowerOff className="size-3" />
+                  </span>
+                }
+                label="Turned off"
+                hint="Hover ⏻ to turn off · tap to turn on"
               />
             </ul>
             <p className="mt-4 mb-2 font-semibold text-foreground">Connections</p>
